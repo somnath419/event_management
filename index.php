@@ -20,32 +20,7 @@
 
   <body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Events</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-           
-            <li class="nav-item">
-			 <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#signup">Sign Up</a>
-
-            </li>
-            <li class="nav-item">
-			<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#login">Login<a>
-
-            </li>
-			 <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="about.php">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-	
+    <?php require_once "header.php"; ?>
 	
 <div id="signup" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -58,9 +33,33 @@
       </div>
       <div class="modal-body">
         
-          <button type="submit" class="btn btn-default" name="exp">Teacher</button>
-          <button type="submit" class="btn btn-default" name="exp">Student</button>
-          <button type="submit" class="btn btn-default" name="exp">Admin</button>
+         <a href="teacher_signup.php"> <button type="submit" class="btn btn-default" name="exp" >Teacher</button></a>
+         <a href="student_signup.php">  <button type="submit" class="btn btn-default" name="exp">Student</button></a>
+         <a href="admin_signup.php">  <button type="submit" class="btn btn-default" name="exp">Admin</button></a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Who are You</h4>
+      </div>
+      <div class="modal-body">
+        
+         <a href="teacher_login.php"> <button type="submit" class="btn btn-default" name="exp" >Teacher</button></a>
+         <a href="student_login.php">  <button type="submit" class="btn btn-default" name="exp">Student</button></a>
+         <a href="admin_login.php">  <button type="submit" class="btn btn-default" name="exp">Admin</button></a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
