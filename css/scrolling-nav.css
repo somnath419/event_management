@@ -17,3 +17,13 @@ header {
 section {
   padding: 150px 0;
 }
+
+body
+{
+	min-height:1000px;
+}
+#c {
+    min-height:800px;
+    width: auto !important;
+    width:800px;
+}

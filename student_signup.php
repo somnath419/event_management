@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(isset($_SESSION['id']))
 {
   header("location:index.php");
@@ -11,13 +10,15 @@ if(isset($_POST['submit']))
   $con = mysqli_connect("localhost","root","","event_management"); //keep your db name
 
   $name= mysqli_escape_string($con,$_POST['name']);
+  $clg_name= mysqli_escape_string($con,$_POST['clg_name']);
+  $reg_no = mysqli_escape_string($con,$_POST['reg_no']);
   $password = mysqli_real_escape_string($con, $_POST['password']);
   $confm_password = mysqli_real_escape_string($con, $_POST['confm_password']);
 
   if($password==$confm_password)
 
   {
-    $usersa_check="select * from teacher_list where teacher_name='$name'";
+    $usersa_check="select * from student_list where reg_no='$reg_no'";
     $select_query_result = mysqli_query($con, $usersa_check) or die(mysqli_error($con));
     $total_rows_fetched = mysqli_num_rows($select_query_result);
 
@@ -30,11 +31,11 @@ if(isset($_POST['submit']))
     else
     {
       
-      $user_registration_query = "insert into teacher_list(teacher_name,pass) values ('$name','$password')";
+      $user_registration_query = "insert into student_list(s_name,reg_no,college_name,password) values ('$name','$reg_no','$clg_name','$password')";
       $user_registration_submit = mysqli_query($con,$user_registration_query) or die(mysqli_error($con));
 
      
-      $_SESSION['e_id']=$email;
+      $_SESSION['id']=$reg_no;
       header("location:index.php");
 
     }
@@ -55,7 +56,7 @@ else
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Teacher Signup</title>
+    <title>Student Signup</title>
 
    
   </head>
@@ -79,6 +80,13 @@ else
                   <form  action="" method="POST">
                     <div class="form-group">
                       <input class="form-control" placeholder="Name" name="name"  required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control"  placeholder="Registration No"  name="reg_no" required>
+                    </div>
+					
+					<div class="form-group">
+                      <input type="text" class="form-control"  placeholder="College Name"  name="clg_name" required>
                     </div>
 					
                     <div class="form-group">

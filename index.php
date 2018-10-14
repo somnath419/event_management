@@ -21,57 +21,11 @@
   <body id="page-top">
 
     <?php require_once "header.php"; ?>
-	
-<div id="signup" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Who are You</h4>
-      </div>
-      <div class="modal-body">
-        
-         <a href="teacher_signup.php"> <button type="submit" class="btn btn-default" name="exp" >Teacher</button></a>
-         <a href="student_signup.php">  <button type="submit" class="btn btn-default" name="exp">Student</button></a>
-         <a href="admin_signup.php">  <button type="submit" class="btn btn-default" name="exp">Admin</button></a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Login Modal -->
-
-<div id="login" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Who are You</h4>
-      </div>
-      <div class="modal-body">
-        
-         <a href="teacher_login.php"> <button type="submit" class="btn btn-default" name="exp" >Teacher</button></a>
-         <a href="student_login.php">  <button type="submit" class="btn btn-default" name="exp">Student</button></a>
-         <a href="admin_login.php">  <button type="submit" class="btn btn-default" name="exp">Admin</button></a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
     <header class="bg-primary text-white">
       <div class="container text-center">
         <h1>Welcome to SLIET</h1>
+		<h3>Event Management Portal</h3>
         <p class="lead">All in One: Registration, View Results</p>
       </div>
     </header>
@@ -83,67 +37,33 @@
             <h2>Event Lists</h2>
 			
 			<div class="row text-center text-lg-left">
+			
+          <?php 
+		  
+		    $con = mysqli_connect("localhost","root","","event_management"); //keep your db name
+            $sql = "SELECT * FROM event_list";
+            $result = mysqli_query($con, $sql);
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
+           if (mysqli_num_rows($result) > 0) {
+			// output data of each row
+			while($row = mysqli_fetch_assoc($result)) {
+				
+				$id=$row["e_id"];
+				
+				 ?> <div class="col-lg-3 col-md-4 col-xs-6">  <a href="event_detail_student.php?id=<?php echo $id;?>" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
+          <?php
+			echo "Name: " . $row["event_name"];
+			
+			echo '</a></div>';
+			}
+				} else {
+			echo "0 results";
+				}	
+
+					?>
+			
+  
             
           </div>
         </div>
@@ -174,7 +94,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Event_management 2018</p>
       </div>
       <!-- /.container -->
     </footer>
