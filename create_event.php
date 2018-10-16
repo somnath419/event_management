@@ -1,10 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION['id']))
-{
-  header("location:index.php");
-}
-$error="";
+
 if(isset($_POST['create']))
 {
 
@@ -64,11 +59,10 @@ if(isset($_POST['create']))
                       <input class="form-control" placeholder="Event Name" name="event_name"  required>
                     </div>
                     <div class="form-group">
-                      <p><b>Start Date </b></p><input type="date" class="form-control"  placeholder="Start Date"  name="start_date" required>
+                      <p><b>Start Date </b></p><input id="startdate" type="date" class="form-control"  min='2018-10-05' max='2018-11-19'  name="start_date" required>
                     </div>
-					
 					<div class="form-group">
-                      <p><b>End Date </b></p><input type="date" class="form-control"  placeholder="End Date"  name="end_date" required>
+                      <p><b>End Date </b></p><input id='enddate' type="date" class="form-control"  min='2018-10-05' max='2018-11-19'  name="end_date" required>
                     </div>
 					
                     <div class="form-group">
@@ -98,6 +92,28 @@ if(isset($_POST['create']))
         </div>
       </div>
 
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					  <script>
+					    var today = new Date();
+						var dd = today.getDate();
+						var mm = today.getMonth()+1; //January is 0!
+						var yyyy = today.getFullYear();
+						 if(dd<10){
+								dd='0'+dd
+							} 
+							if(mm<10){
+								mm='0'+mm
+							} 
 
+						today = yyyy+'-'+mm+'-'+dd;
+						document.getElementById("startdate").setAttribute("min", today);
+											 
+
+
+						$("#startdate").on("change",function(){
+						var selected = $(this).val();
+							document.getElementById("enddate").setAttribute("min", selected);
+						});
+					 </script>
       </body>
       </html>

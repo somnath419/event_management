@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
 
   if($password==$confm_password)
 
-  {
+ {
     $usersa_check="select * from student_list where reg_no='$reg_no'";
     $select_query_result = mysqli_query($con, $usersa_check) or die(mysqli_error($con));
     $total_rows_fetched = mysqli_num_rows($select_query_result);
@@ -35,12 +35,14 @@ if(isset($_POST['submit']))
       $user_registration_submit = mysqli_query($con,$user_registration_query) or die(mysqli_error($con));
 
      
+	 session_start();
       $_SESSION['id']=$reg_no;
       header("location:index.php");
 
     }
   }
-  else{
+  else
+  {
     $error="Password don't matches.";
 
   }

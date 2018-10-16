@@ -25,7 +25,7 @@
       <div class="container text-center">
         <h1>Welcome to Admin Panel</h1>
 		<a href="create_event.php"><button type="submit" name="create" class="btn btn-default">Create Event</button></a>
-		<a href="delete_event.php"><button type="submit" name="create" class="btn btn-default">Delete Event</button></a>
+		<a href="winner_entry.php"><button type="submit" name="create" class="btn btn-default">Register Winners</button></a>
       </div>
     </header>
 
@@ -37,66 +37,38 @@
 			
 			<div class="row text-center text-lg-left">
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="event_detail_admin.html" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-          <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
-          </a>
-        </div>
+				<?php 
+			  
+					$con = mysqli_connect("localhost","root","","event_management"); //keep your db name
+					$sql = "SELECT * FROM event_list";
+					$result = mysqli_query($con, $sql);
+
+					if (mysqli_num_rows($result) > 0) {
+					// output data of each row
+					while($row = mysqli_fetch_assoc($result)) {
+					
+						$id=$row["e_id"];
+					
+				?> 
+			
+				<div class="col-lg-2 col-md-3 col-xs-6">  
+					<a href="event_detail_admin.php?event_id=<?php echo $id;?>" >
+					<img class="img-fluid img-thumbnail" src="event_logo.jpg" alt="">
+					
+					<?php
+						echo $row["event_name"];
+						?>
+						</a>
+		<a href="delete_event.php?event_id=<?php echo $id; ?>"><button type="submit" name="create" class="btn btn-default">Delete Event</button></a>
+
+						</div>
+						<?php
+						}
+							} else {
+						echo "No Events";
+							}	
+
+					?>
             
           </div>
         </div>
@@ -104,24 +76,7 @@
     </section>
 
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Event_management 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom JavaScript for this theme -->
-    <script src="js/scrolling-nav.js"></script>
-
+   
   </body>
 
 </html>
